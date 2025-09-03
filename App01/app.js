@@ -1,13 +1,22 @@
-const cajaDeTexto = document.querySelector("input");
-const botoncito = document.querySelector("button");
-const listaTareas = document.querySelector("ul");
+const botonElm = document.querySelector('#agregar');
+const inputElm = document.querySelector('#tarea');
+const listaElm = document.querySelector('#lista');
 
-botoncito.addEventListener('click', () => {
-    const valorIngresado = cajaDeTexto.value;
-    const itemNuevo = document.createElement("li");
+botonElm.addEventListener('click', () => {
+  const valor = inputElm.value.trim();
+  if (!valor) return;
 
-    itemNuevo.textContent = valorIngresado;
-    listaTareas.appendChild(itemNuevo);
-    cajaDeTexto.value = "";
-})
+  const li = document.createElement('li');
+  li.textContent = valor;
+  listaElm.appendChild(li);
+
+  inputElm.value = '';
+  inputElm.focus();
+});
+
+
+inputElm.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') botonElm.click();
+});
+
 
